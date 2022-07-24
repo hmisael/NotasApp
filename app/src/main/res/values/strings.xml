@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Notas</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="btn_text">Guardar Nota</string>
+    <string name="btn_text_mod">Guardar Cambios</string>
+    <string name="bot_n_agregar_nota">Botón agregar Nota</string>
+    <string name="t_tulo_de_la_nota">Título de la nota</string>
+    <string name="cuerpo_de_la_nota">Cuerpo de la nota</string>
+    <string name="fecha_modificacion">"Fecha de modificación: "</string>
+    <string name="no_hay_notas_guardadas">No hay notas guardadas :)</string>
+
+</resources>
