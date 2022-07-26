@@ -14,10 +14,10 @@ data class Note (
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0L,
     @ColumnInfo(name = "title")
-            val titulo :String,
-            @ColumnInfo(name = "description")
-            val descripcion :String,
-            @ColumnInfo(name = "date")
-            val fecha :String) : Parcelable
+            val title :String,
+    @ColumnInfo(name = "description")
+            val description :String,
+    @ColumnInfo(name = "date")
+            val date :String) : Parcelable
 
 

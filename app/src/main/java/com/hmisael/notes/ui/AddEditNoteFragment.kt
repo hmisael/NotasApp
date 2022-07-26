@@ -25,7 +25,6 @@ class AddEditNoteFragment : Fragment(R.layout.fragment_add_edit_note) {
 
     //Instancia de ViewModel
     lateinit var viewModel: NoteViewModel
-    //var id = -1;
 
     //Obtener argumentos vía navigation (nota)
     private val args: AddEditNoteFragmentArgs by navArgs()
@@ -34,10 +33,8 @@ class AddEditNoteFragment : Fragment(R.layout.fragment_add_edit_note) {
         super.onCreate(savedInstanceState)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?): View? {
         //Inflar la vista xml del Fragment mediante binding
         _binding = FragmentAddEditNoteBinding.inflate(inflater, container, false)
         return binding.root
@@ -55,33 +52,33 @@ class AddEditNoteFragment : Fragment(R.layout.fragment_add_edit_note) {
         ).get(NoteViewModel::class.java)
 
         //Obtengo recurso Nota mediante los argumentos de navigation
-        val nota = args.nota
+        val note = args.nota
 
-        if (nota==null){
+        if (note==null){
             binding.fabBtnOk.setText(R.string.btn_text)
         }
         else{
             binding.fabBtnOk.setText(R.string.btn_text_mod)
-            binding.etDescription.setText(nota.descripcion)
-            binding.etTitle.setText(nota.titulo)
+            binding.etDescription.setText(note.description)
+            binding.etTitle.setText(note.title)
         }
 
         //Click listener para guardar la nueva nota o una actualización de nota
         binding.fabBtnOk.setOnClickListener {
             //Obtener en una variable el título y descripción
-            val tituloNota = binding.etTitle.text.toString()
-            val descripcionNota = binding.etDescription.text.toString()
+            val titleNote = binding.etTitle.text.toString()
+            val descriptionNote = binding.etDescription.text.toString()
 
             //Si el argumento es null, se guardan los datos en una nueva nota
-            if (nota == null ) {
+            if (note == null ) {
                 //Verifico que el usuario ingrese la información solicitada
-                if (tituloNota.isNotEmpty() && descripcionNota.isNotEmpty()) {
-                    val formatoFecha = SimpleDateFormat("dd MMM, yyyy - HH:mm")
-                    val fechaActual: String = formatoFecha.format(Date())
+                if (titleNote.isNotEmpty() && descriptionNote.isNotEmpty()) {
+                    val dateFormat = SimpleDateFormat("dd MMM, yyyy - HH:mm")
+                    val today: String = dateFormat.format(Date())
 
                     //Se invoca método de ViewModel para guardar una nueva nota
-                    viewModel.addNote(Note(0L,tituloNota, descripcionNota, fechaActual))
-                    Toast.makeText(context, "$tituloNota agregada con éxito :)", Toast.LENGTH_LONG).show()
+                    viewModel.addNote(Note(0L,titleNote, descriptionNote, today))
+                    Toast.makeText(context, "$titleNote agregada con éxito :)", Toast.LENGTH_LONG).show()
 
                     val direction = AddEditNoteFragmentDirections
                         .actionAddEditNoteFragmentToMainFragment()
@@ -93,12 +90,12 @@ class AddEditNoteFragment : Fragment(R.layout.fragment_add_edit_note) {
             //Si el argumento no es null, se actualizan los datos de la nota
             } else {
                 //Los datos de la nota son actualizados
-                if (tituloNota.isNotEmpty() && descripcionNota.isNotEmpty()) {
-                    val date = SimpleDateFormat("dd MMM, yyyy - HH:mm")
-                    val fechaActual: String = date.format(Date())
+                if (titleNote.isNotEmpty() && descriptionNote.isNotEmpty()) {
+                    val dateFormat = SimpleDateFormat("dd MMM, yyyy - HH:mm")
+                    val today: String = dateFormat.format(Date())
 
                     //Se invoca método de ViewModel para actualizar los datos de una nota
-                    val updatedNote = Note(nota.id, tituloNota, descripcionNota, fechaActual)
+                    val updatedNote = Note(note.id, titleNote, descriptionNote, today)
                     viewModel.updateNote(updatedNote)
                     Toast.makeText(context, "Nota actualizada con éxito :)", Toast.LENGTH_LONG).show()
 

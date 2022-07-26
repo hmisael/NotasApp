@@ -110,7 +110,7 @@ class MainFragment : Fragment(R.layout.fragment_main),
             viewModel.deleteNote(note)
 
             //Informar al usuario
-            Toast.makeText(context, "Nota ${note.titulo} eliminada", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, "Nota ${note.title} eliminada", Toast.LENGTH_LONG).show()
             dialog.dismiss()
         })
         addDialog.setNegativeButton("Cancelar", DialogInterface.OnClickListener{

@@ -1,14 +1,9 @@
 package com.hmisael.notes.ui
 
 
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.hmisael.notes.R
 import com.hmisael.notes.databinding.NoteItemBinding
 import com.hmisael.notes.db.entity.Note
 
@@ -20,25 +15,9 @@ class NoteAdapter(val noteClickDeleteInterface: NoteClickDeleteInterface,
     private val allNotes = ArrayList<Note>()
 
     //Crear clase View Holder
-    /*inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        //Crear e inicializar los elementos de la vista
-        val noteTV = itemView.findViewById<TextView>(R.id.idTVNote)
-        val dateTV = itemView.findViewById<TextView>(R.id.idTVDate)
-        val deleteIV = itemView.findViewById<ImageView>(R.id.idIVDelete)
-    }*/
-
     class NotaViewHolder(val itemBinding: NoteItemBinding) :
         RecyclerView.ViewHolder(itemBinding.root)
 
-    /*
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        //Inflar el layout para cada ítem del RecyclerView
-        val itemView = LayoutInflater.from(parent.context).inflate(
-            R.layout.note_item,
-            parent, false
-        )
-        return ViewHolder(itemView)
-    }*/
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotaViewHolder {
         return NotaViewHolder(
             NoteItemBinding.inflate(
@@ -47,13 +26,10 @@ class NoteAdapter(val noteClickDeleteInterface: NoteClickDeleteInterface,
         )
     }
 
-
-//    override fun onBindViewHolder(holder: NotaViewHolder, position: Int) {
     override fun onBindViewHolder(holder: NotaViewHolder, position: Int) {
-
-    //Asignar los datos de c/ítem del RecyclerView
-        holder.itemBinding.idTVNote.setText(allNotes.get(position).titulo)
-        val fecha = "Fecha de modificación: " + allNotes.get(position).fecha
+        //Asignar los datos de c/ítem del RecyclerView
+        holder.itemBinding.idTVNote.setText(allNotes.get(position).title)
+        val fecha = "Fecha de modificación: " + allNotes.get(position).date
         holder.itemBinding.idTVDate.setText(fecha)
         //Agregar click listener para el ícono de borrado de c/item
         holder.itemBinding.idIVDelete.setOnClickListener {
