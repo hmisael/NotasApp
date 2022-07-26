@@ -19,8 +19,7 @@ import com.hmisael.notes.viewmodel.NoteViewModel
 
 
 class MainFragment : Fragment(R.layout.fragment_main),
-                    NoteClickInterface,
-                    NoteClickDeleteInterface {
+                    NoteClickInterface,NoteClickDeleteInterface {
 
     //Binding del Fragment
     private var _binding: FragmentMainBinding? = null
@@ -49,7 +48,7 @@ class MainFragment : Fragment(R.layout.fragment_main),
         binding.rvNotes.layoutManager = LinearLayoutManager(requireContext())
 
         //Inicializar Adapter
-        val noteAdapter = NoteAdapter(requireContext(), this, this)
+        val noteAdapter = NoteAdapter(this, this)
 
         //Asignar el Adapter para el RecyclerView
         binding.rvNotes.adapter = noteAdapter
